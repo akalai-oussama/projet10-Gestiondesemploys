@@ -14,7 +14,6 @@
 		array_push($data, $person);
 		file_put_contents("people.json", json_encode($data));
 		header("Location: index.php");
-
     }
 ?>
 <div>

@@ -17,7 +17,6 @@ $data = json_decode($getfile);
 				</tr>		
 				<?php $index=0;foreach ($data as $person){
 				$index++;  
-				
 				?>
 				<tr>
 					<td><?php echo $index; ?></td>
