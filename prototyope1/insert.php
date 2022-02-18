@@ -12,9 +12,7 @@ if(!empty($_POST)){
 	
 	file_put_contents("personnes.json",json_encode($data))	;
 	header("location: index.php"); 
-
 }
-
 
 ?>
 <!DOCTYPE html>
