@@ -1,14 +1,13 @@
 <?php
-    include "config.php";
+    include "GestionEmployes.php";
 
-    
-        if(isset($_GET['id'])){
-            $id = $_GET['id'];
-            $sqlDeleteQuery = "DELETE FROM person WHERE id= '$id'";
+if(isset($_GET['id'])){
 
-            mysqli_query($conn, $sqlDeleteQuery);
-            header('Location: index.php');
-            
+    // Trouver tous les employés depuis la base de données 
+    $gestionEmployes = new GestionEmployes();
+    $id = $_GET['id'] ;
+    $gestionEmployes->Supprimer($id);
         
-    }
+    header('Location: index.php');
+}
 ?>

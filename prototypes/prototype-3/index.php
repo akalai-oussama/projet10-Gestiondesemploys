@@ -1,42 +1,41 @@
 <?php
-    include 'config.php';
-
-    $sqlGetData = 'SELECT id, Prenom, Nom, Age, FROM person';
-    $result = mysqli_query($conn ,$sqlGetData);
-    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
+    include "GestionEmployes.php";
+    // Trouver tous les employés depuis la base de données 
+    $gestionEmployes = new GestionEmployes();
+    $data = $gestionEmployes->afficher();
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Gestion des employés</title>
 </head>
 <body>
     <div>
-        <a href="insert.php">Insert Data</a>
+        <a href="ajouter.php">Ajouter un employé</a>
         <table>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Age</th>
-                <th>Action</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Date de naissance</th>
+                <th></th>
             </tr>
-
             <?php
-                    foreach($data as $person){
+                    foreach($data as $value){
             ?>
 
             <tr>
-                <td><?= $person['Prenom']?></td>
-                <td><?= $person['Nom']?></td>
-                <td><?= $person['Age']?></td>                <td>
-                    <a href="edit.php?id=<?php echo $person['id'] ?>">Edit</a>
-                    <a href="delete.php?id=<?php echo $person['id'] ?>">delete</a>
+                <td><?= $value->getNom() ?></td>
+                <td><?= $value->getPrenom() ?></td>
+                <td><?= $value->getDate_de_naissance() ?></td>
+                <td>
+                    <a href="editer.php?id=<?php echo $value->getId() ?>">Éditer</a>
+                    <a href="supprimer.php?id=<?php echo $value->getId() ?>">Supprime</a>
                 </td>
             </tr>
             <?php }?>
