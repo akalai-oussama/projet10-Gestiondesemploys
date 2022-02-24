@@ -1,15 +1,15 @@
 <?php
 
-include "GestionEmployes.php";
+include "employeeManager.php";
 // Trouver tous les employés depuis la base de données 
-$gestionEmployes = new GestionEmployes();
+$gestionEmployee = new GestionEmployee();
 
 
 if(!empty($_POST)){
-	$employe = new Employe();
-	$employe->setPrenom($_POST['Prenom']);
-	$employe->setNom($_POST['Nom']);
-	$employe->setDate_de_naissance($_POST['Date_de_naissance']);
+	$employe = new Employee();
+	$employe->setfirstName($_POST['firstName']);
+	$employe->setlastName($_POST['lastName']);
+	$employe->setDate_of_Birth($_POST['Date_of_Birth']);
 	$gestionEmployes->Ajouter($employe);
 	
 	// Redirection vers la page index.php
@@ -18,9 +18,9 @@ if(!empty($_POST)){
 ?>
 
 <form action="" method="POST">                                                          
-Prenom : <input type="text" name="Prenom" >
-Nom: <input type="text" name="Nom" >
-Date_de_naissance : <input type="date"  name="Date_de_naissance" >
+lastName : <input type="text" name="lastName" >
+firstName: <input type="text" name="firstName" >
+Date_of_Birth : <input type="date"  name="Date_of_Birth" >
    
 <button type="submit">modifier</button>
 </form>

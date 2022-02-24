@@ -1,6 +1,6 @@
 <?php
- include 'Employe.php';
-class GestionEmployes{
+ include 'employee.php';
+class GestionEmployee{
 
     private $Connection = Null;
 
@@ -17,12 +17,12 @@ class GestionEmployes{
     
     public function Ajouter($employe){
 
-        $nom = $employe->getNom();
-        $prenom = $employe->getPrenom();
-        $Date_de_naissance = $employe->getDate_de_naissance();
+        $firstName = $employe->getfirstName();
+        $lastName = $employe->getlastName();
+        $Date_of_Birth = $employe->getDate_of_Birth();
         // requête SQL
-        $insertRow="INSERT INTO personnes(Nom, Prenom, Date_de_naissance) 
-                                VALUES('$nom', '$prenom', '$Date_de_naissance')";
+        $insertRow="INSERT INTO personnes(firstName, lastName, Date_of_Birth) 
+                                VALUES('$firstName', '$lastName', '$Date_of_Birth')";
 
         mysqli_query($this->getConnection(), $insertRow);
     }
@@ -30,7 +30,7 @@ class GestionEmployes{
     
 
     public function afficher(){
-        $SelctRow = 'SELECT id, Nom, Prenom, Date_de_naissance FROM personnes';
+        $SelctRow = 'SELECT id, firstName, lastName, Date_of_Birth FROM employee';
         $query = mysqli_query($this->getConnection() ,$SelctRow);
         $employes_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
@@ -38,38 +38,38 @@ class GestionEmployes{
         foreach ($employes_data as $value_Data) {
             $employe = new Employe();
             $employe->setId($value_Data['id']);
-            $employe->setNom($value_Data['Nom']);
-            $employe->setPrenom ($value_Data['Prenom']);
-            $employe->setDate_de_naissance ($value_Data['Date_de_naissance']);
+            $employe->setfirstName($value_Data['firstName']);
+            $employe->setlastName ($value_Data['lastName']);
+            $employe->setDate_of_Birth ($value_Data['Date_of_Birth']);
             array_push($TableData, $employe);
         }
-          return $TableData;
+        return $TableData;
     }
 
-// pour afficher dans input
+
     public function RechercherParId($id){
-        $SelectRowId = "SELECT * FROM personnes WHERE id= $id";
+        $SelectRowId = "SELECT * FROM employee WHERE id= $id";
         $result = mysqli_query($this->getConnection(),  $SelectRowId);
         // Récupère une ligne de résultat sous forme de tableau associatif
         $employe_data = mysqli_fetch_assoc($result);
-        $employe = new Employe();
+        $employe = new Employee();
         $employe->setId($employe_data['id']);
-        $employe->setNom($employe_data['Nom']);
-        $employe->setPrenom ($employe_data['Prenom']);
-        $employe->setDate_de_naissance ($employe_data['Date_de_naissance']);
+        $employe->setfirstName($employe_data['firstName']);
+        $employe->setlastName ($employe_data['lastName']);
+        $employe->setDate_of_Birth ($employe_data['Date_of_Birth']);
         
         return $employe;
     }
 
     public function Supprimer($id){
-        $RowDelet = "DELETE FROM personnes WHERE id= '$id'";
+        $RowDelet = "DELETE FROM employee WHERE id= '$id'";
         mysqli_query($this->getConnection(), $RowDelet);
     }
 
-    public function Modifier($id,$nom,$prenom,$date_de_naissance){
+    public function Modifier($id,$firstName,$lastName,$date_of_Birth){
         // Requête SQL
-        $RowUpdate = "UPDATE personnes SET 
-        Nom='$nom', Prenom='$prenom', Date_de_naissance='$date_de_naissance'
+        $RowUpdate = "UPDATE employee SET 
+        firstName='$firstName', lastName='$lastName', Date_of_Birth='$date_of_Birth'
         WHERE id=$id";
 
         mysqli_query($this->getConnection(),$RowUpdate);

@@ -1,12 +1,12 @@
 <?php
-    include "GestionEmployes.php";
+    include "employeeManager.php";
 
 if(isset($_GET['id'])){
 
     // Trouver tous les employés depuis la base de données 
-    $gestionEmployes = new GestionEmployes();
+    $gestionEmployee = new GestionEmployee();
     $id = $_GET['id'] ;
-    $gestionEmployes->Supprimer($id);
+    $gestionEmployee->delete($id);
         
     header('Location: index.php');
 }

@@ -1,10 +1,10 @@
 <?php
 
-class Employe{
+class Employee{
     private $Id;
-    private $Nom;
-    private $Prenom;
-    private $Date_de_naissance;
+    private $firstName;
+    private $lastName;
+    private $Date_of_Birth;
 
     
     public function getId() {
@@ -14,25 +14,25 @@ class Employe{
         $this->Id = $id;
     }
 
-    public function getNom() {
-        return $this->Nom;
+    public function getfirstName() {
+        return $this->firstName;
     }
-    public function setNom($nom) {
-        $this->Nom = $nom;
-    }
-
-    public function getPrenom() {
-        return $this->Prenom;
-    }
-    public function setPrenom($prenom) {
-        $this->Prenom = $prenom;
+    public function setfirstName($firstName) {
+        $this->fristName = $firstName;
     }
 
-    public function getDate_de_naissance() {
-        return $this->Date_de_naissance;
+    public function getlastName() {
+        return $this->lastName;
     }
-    public function setDate_de_naissance($Date_de_naissance) {
-        $this->Date_de_naissance = $Date_de_naissance;
+    public function setlastName($lastName) {
+        $this->lastName = $lastName;
+    }
+
+    public function getDate_of_Birth() {
+        return $this->Date_of_Birth;
+    }
+    public function setDate_of_Birth($Date_of_Birth) {
+        $this->Date_of_Birth = $Date_of_Birth;
     }
 
 }
