@@ -5,14 +5,8 @@ class GestionEmployee{
     private $Connection = Null;
 
     private function getConnection(){
-      
             $this->Connection = mysqli_connect('localhost', 'oussama', '678dhHQ)oQZVte!H', 'demo');
-           
-         
-       
-        
         return $this->Connection;
-        
     }
     
     public function Ajouter($employe){
